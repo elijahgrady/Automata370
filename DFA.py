@@ -30,5 +30,3 @@ class DFA:
             self.transition_to_state_with_input(inp)
             continue
         return self.in_accept_state()
-
-    pass

@@ -14,12 +14,14 @@ def main(argv):
     line = fileIN.readline()
     ALPHA_BET = list(line)
     print(ALPHA_BET)
+
     line = fileIN.readline()
     TRANS_LIST = []
     while(list(line).__len__()==8):
         TRANS_LIST.append(list(line))
         line = fileIN.readline()
     print(TRANS_LIST)
+
     TRANS_DICT = {}
     #CONVERT THE LIST OF TRANSITIONS INTO A TRANSITION FUNCTION DICTIONARY
     START_STATE = line
