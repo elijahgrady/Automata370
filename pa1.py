@@ -2,6 +2,8 @@
 
 import sys, getopt, DFA
 
+#ALL WE NEED TO DO IS GET OUR INPUT TO BE IN THE SAME FORMAT AS THE 'CHEATING' INPUT
+
 def main(argv):
 
     #takes input from the command line specified file and initialize into local variables
