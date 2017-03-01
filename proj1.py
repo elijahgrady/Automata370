@@ -8,32 +8,29 @@ def main(argv):
     with open(sys.argv[1], "r") as x:
 
         numstates = int(x.readline().rstrip('\n'))
-        #print(numstates)
 
         alphabet = list(x.readline().rstrip('\n'))
-
-        #print(alphabet)
 
         STATE_TRANSITIONS = []
 
         line = x.readline().rstrip('\n')
+
         while(line.__len__() != 1):
             splitted = line.split('\'')
             hold = []
             for i in splitted:
                 hold.append(i.replace(' ',''))
-
             STATE_TRANSITIONS.append(hold)
             line = x.readline().rstrip('\n')
 
-        #for y in STATE_TRANSITIONS:
-            #print(y)
-
         startstate = int(line)
-        #print(startstate)
 
         ACCEPT_STATES = x.readline().rstrip('\n').split(' ')
-        #print(ACCEPT_STATES)
+        for a in ACCEPT_STATES:
+            try:
+                a= int(a)
+            except:
+                ACCEPT_STATES.remove(a)
 
         inputStrings = []
 
@@ -41,12 +38,9 @@ def main(argv):
             line = line.rstrip('\n')
             inputStrings.append(line)
 
-
-
         myDFA = DFA(alphabet,numstates,ACCEPT_STATES,STATE_TRANSITIONS,startstate)
         for x in inputStrings:
             myDFA.inputstring(x)
-
 
 class DFA:
 
@@ -54,6 +48,7 @@ class DFA:
         self.alphabet = E
         self.states = {}
         self.currentstate = q0
+
         #Constructs State object 1 : Q
         for x in range(1,Q+1):
             self.states[x] = State(x, F, transitions)
@@ -67,7 +62,9 @@ class DFA:
         else:
             print("Rejects")
         self.currentstate = original
+
 class State:
+
     def __init__(self, state, accepts, transitions):
         self.statenum = int(state)
         self.accept = False
