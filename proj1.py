@@ -1,4 +1,4 @@
-import sys, getopt, DFA, tokenize
+import sys
 
 
 # ALL WE NEED TO DO IS GET OUR INPUT TO BE IN THE SAME FORMAT AS THE 'CHEATING' INPUT
