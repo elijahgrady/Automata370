@@ -4,11 +4,11 @@ def main(argv):
     # takes input from the command line specified file and initialize into local variables
     with open(sys.argv[1], "r") as x:
 
-        numstates = int(x.readline().rstrip('\n'))
+        numStates = int(x.readline().rstrip('\n'))
 
         alphabet = list(x.readline().rstrip('\n'))
 
-        STATE_TRANSITIONS = []
+        stateTransitions = []
 
         line = x.readline().rstrip('\n')
 
@@ -17,17 +17,17 @@ def main(argv):
             hold = []
             for i in splitted:
                 hold.append(i.replace(' ',''))
-            STATE_TRANSITIONS.append(hold)
+            stateTransitions.append(hold)
             line = x.readline().rstrip('\n')
 
-        startstate = int(line)
+        startState = int(line)
 
-        ACCEPT_STATES = x.readline().rstrip('\n').split(' ')
-        for a in ACCEPT_STATES:
+        acceptStates = x.readline().rstrip('\n').split(' ')
+        for a in acceptStates:
             try:
                 a= int(a)
             except:
-                ACCEPT_STATES.remove(a)
+                acceptStates.remove(a)
 
         inputStrings = []
 
@@ -35,7 +35,7 @@ def main(argv):
             line = line.rstrip('\n')
             inputStrings.append(line)
 
-        myDFA = DFA(alphabet,numstates,ACCEPT_STATES,STATE_TRANSITIONS,startstate)
+        myDFA = DFA(alphabet,numStates,acceptStates,stateTransitions,startState)
         for x in inputStrings:
             myDFA.inputstring(x)
 
