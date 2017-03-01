@@ -7,12 +7,12 @@ def main(argv):
     # takes input from the command line specified file and initialize into local variables
     with open(sys.argv[1], "r") as x:
 
-        numstates = x.readline().rstrip('\n')
-        print(numstates)
+        numstates = int(x.readline().rstrip('\n'))
+        #print(numstates)
 
         alphabet = list(x.readline().rstrip('\n'))
 
-        print(alphabet)
+        #print(alphabet)
 
         STATE_TRANSITIONS = []
 
@@ -26,46 +26,58 @@ def main(argv):
             STATE_TRANSITIONS.append(hold)
             line = x.readline().rstrip('\n')
 
-        for y in STATE_TRANSITIONS:
-            print(y)
+        #for y in STATE_TRANSITIONS:
+            #print(y)
 
-        startstate = line
-        print(startstate)
+        startstate = int(line)
+        #print(startstate)
 
         ACCEPT_STATES = x.readline().rstrip('\n').split(' ')
-        print(ACCEPT_STATES)
+        #print(ACCEPT_STATES)
 
         inputStrings = []
 
         for line in x:
             line = line.rstrip('\n')
             inputStrings.append(line)
-        for k in inputStrings:
-            print(k)
+
+
+
+        myDFA = DFA(alphabet,numstates,ACCEPT_STATES,STATE_TRANSITIONS,startstate)
+        for x in inputStrings:
+            myDFA.inputstring(x)
 
 
 class DFA:
+
     def __init__(self, E, Q, F, transitions, q0):
         self.alphabet = E
         self.states = {}
-        self.startstate = q0
+        self.currentstate = q0
         #Constructs State object 1 : Q
         for x in range(1,Q+1):
             self.states[x] = State(x, F, transitions)
 
+    def inputstring(self, inputstring):
+        original = self.currentstate
+        for x in list(inputstring):
+            self.currentstate = int(self.states[self.currentstate].transitions[x])
+        if self.states[self.currentstate].accept is True:
+            print("Accepts")
+        else:
+            print("Rejects")
+        self.currentstate = original
 class State:
     def __init__(self, state, accepts, transitions):
-        self.statenum = state
+        self.statenum = int(state)
         self.accept = False
         for x in accepts:
             if int(x) is int(state):
                 self.accept = True
         self.transitions = {}
         for x in transitions:
-            if int(transitions[0]) is int(x):
-                self.transitions[transitions[1]]= transitions[2]
-
-
+            if int(x[0]) is int(state):
+                self.transitions[x[1]] = x[2]
 
 if __name__ == "__main__":
     main(sys.argv[1])
