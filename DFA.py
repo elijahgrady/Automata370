@@ -8,7 +8,7 @@ class DFA:
         self.start_state = start_state
         self.accept_states = accept_states
         self.current_state = start_state
-        return
+
 
     def transition_to_state_with_input(self, input_value):
         if ((self.current_state, input_value) not in self.transition_function.keys()):
