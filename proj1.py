@@ -49,11 +49,11 @@ Each DFA object has an alphabet stored as a list of symbols, a list of states, a
 class DFA:
     '''
     Constructs a DFA object
-    @:param E, a list of symbols in the alphabet
-    @:param Q, the number of states
-    @:param F, a list of accepting states
-    @:param transitions, the list of transitions
-    @:param q0, the start state
+    @param E, a list of symbols in the alphabet
+    @param Q, the number of states
+    @param F, a list of accepting states
+    @param transitions, the list of transitions
+    @param q0, the start state
     '''
     def __init__(self, E, Q, F, transitions, q0):
         self.alphabet = E
@@ -66,8 +66,8 @@ class DFA:
 
     '''
     Performs a computation on the input string
-    @:param inputstring, the string the computation is performed on
-    @:return Prints out Accept or Reject, based on the outcome of the computation
+    @param inputstring, the string the computation is performed on
+    @output Prints Accept or Reject to screen, depending on the computation
     '''
     def inputstring(self, inputstring):
         original = self.currentstate
@@ -86,9 +86,9 @@ Each State object has a state number, an accept flag, and a dictionary of transi
 class State:
     '''
     Constructs a State object
-    @:param state, the state number
-    @:param accepts, a list of accept states
-    @:param transitions, a list of transitions for the DFA
+    @param state, the state number
+    @param accepts, a list of accept states
+    @param transitions, a list of transitions for the DFA
     '''
     def __init__(self, state, accepts, transitions):
         self.statenum = int(state)
